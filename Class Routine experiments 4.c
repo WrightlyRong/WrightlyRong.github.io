@@ -11,6 +11,7 @@
 //Sec B: 7(r2) 0(r2)        1(r1)         10(r1)
 //Sec C:             10(r2) 7(r2)  1(r2)   0(r2)
 
+
 #include<stdio.h>
 #include <stdlib.h>
 #include<string.h>
@@ -44,25 +45,10 @@ int main()
     routine[0][4][2]=9;
     routine[0][4][3]=14;
 
-    /*routine[1][0][0]=7;
-    routine[1][0][1]=0;
-    routine[1][0][2]=1;
-    routine[1][1][0]=6;
-    routine[1][1][1]=0;
-    routine[1][1][2]=1;
-    routine[1][2][0]=5;
-    routine[1][2][1]=2;
-    routine[1][2][2]=3;
-    routine[1][3][0]=5;
-    routine[1][3][1]=2;
-    routine[1][3][2]=4;
-    routine[1][4][0]=4;
-    routine[1][4][1]=3;*/
     int mon=0,tues=0,wed=0,thurs=0,fri=0;
     int itsmon=0,itstues=0,itswed=0,itsthurs=0,itsfri=0;
     int teacher=0;
     int totalclassesinweek;
-
     char subname[100][1000];
 
     char ch, file_name[25];
@@ -97,16 +83,13 @@ int main()
         }
     }
 
-
-    fclose(fp);
+    fclose(fp);   //file ends for input
 
     FILE *fpprint;
     char file_name2[25];
     printf("In which file will the routine be printed?\n");
     gets(file_name2);
-    fpprint=fopen(file_name2, "w");
-
-
+    fpprint=fopen(file_name2, "w");                //file work ends(except the part to where to print and what to print after that is fclose)
 
 
     printf("How Many classes do you need in a week?\n");
@@ -114,12 +97,13 @@ int main()
     scanf("%d",&totalclassesinweek);
     int classesonfriday=2;
     int choiceof4classesor3classesonfri;
+    int choiceof4classes[4];
+
     if(totalclassesinweek==15)
     {
         printf("How many classes you want on friday?\n");
         printf("If it's 2 then press 2 and if it's 3, press 3\n");
         scanf("%d",&classesonfriday);
-
 
         if(classesonfriday==2)
         {
@@ -127,40 +111,36 @@ int main()
             printf("1.Monday\n2.Tuesday\n3.Wednesday\n4.Thursday\n5.I want 3 classes on Friday\n");
             scanf("%d",&choiceof4classesor3classesonfri);
 
-        }
-        if(choiceof4classesor3classesonfri==1)
-        {
-            int tempswap9thcls=routine[0][0][3];
-            routine[0][0][3]=routine[0][4][2];
-            routine[0][4][2]=tempswap9thcls;
-            printf("Swapped in monday\n %d %d\n",routine[0][0][3],routine[0][4][2]);
-        }
-        else if(choiceof4classesor3classesonfri==2)
-        {
-            int tempswap9thcls=routine[0][1][3];
-            routine[0][1][3]=routine[0][4][2];
-            routine[0][4][2]=tempswap9thcls;
-            printf("Swapped in tuesday\n %d %d\n",routine[0][1][3],routine[0][4][2]);
-        }
-        else if(choiceof4classesor3classesonfri==3)
-        {
-            int tempswap9thcls=routine[0][2][3];
-            routine[0][2][3]=routine[0][4][2];
-            routine[0][4][2]=tempswap9thcls;
-            printf("Swapped in wednesday\n %d %d\n",routine[0][2][3],routine[0][4][2]);
-        }
-        else if(choiceof4classesor3classesonfri==4)
-        {
-            int tempswap9thcls=routine[0][3][3];
-            routine[0][3][3]=routine[0][4][2];
-            routine[0][4][2]=tempswap9thcls;
-            printf("Swapped in thursday\n %d %d\n",routine[0][3][3],routine[0][4][2]);
+            if(choiceof4classesor3classesonfri==1) //since 2 classes on friday, preselected 3rd class on friday is being swapped by the day on which there'll be 4 classes
+            {
+                int tempswap9thcls=routine[0][0][3];
+                routine[0][0][3]=routine[0][4][2];
+                routine[0][4][2]=tempswap9thcls;
+                printf("Swapped in monday\n %d %d\n",routine[0][0][3],routine[0][4][2]);
+            }
+            else if(choiceof4classesor3classesonfri==2)
+            {
+                int tempswap9thcls=routine[0][1][3];
+                routine[0][1][3]=routine[0][4][2];
+                routine[0][4][2]=tempswap9thcls;
+                printf("Swapped in tuesday\n %d %d\n",routine[0][1][3],routine[0][4][2]);
+            }
+            else if(choiceof4classesor3classesonfri==3)
+            {
+                int tempswap9thcls=routine[0][2][3];
+                routine[0][2][3]=routine[0][4][2];
+                routine[0][4][2]=tempswap9thcls;
+                printf("Swapped in wednesday\n %d %d\n",routine[0][2][3],routine[0][4][2]);
+            }
+            else if(choiceof4classesor3classesonfri==4)
+            {
+                int tempswap9thcls=routine[0][3][3];
+                routine[0][3][3]=routine[0][4][2];
+                routine[0][4][2]=tempswap9thcls;
+                printf("Swapped in thursday\n %d %d\n",routine[0][3][3],routine[0][4][2]);
+            }
         }
     }
-
-
-
-    int choiceof4classes[4];
 
     if(totalclassesinweek==16)
     {
@@ -173,6 +153,7 @@ int main()
             printf("Since you chose to have 3 classes on Friday, on which day would you have 4 classes?\n");
             printf("1.Monday\n2.Tuesday\n3.Wednesday\n4.Thursday\n");
             scanf("%d",&choiceof4classes[0]);
+
             if(choiceof4classes[0]==1)
             {
                 routine[0][0][3]=10;
@@ -199,7 +180,7 @@ int main()
             printf("1.Monday\n2.Tuesday\n3.Wednesday\n4.Thursday\n");
             scanf("%d %d",&choiceof4classes[0],&choiceof4classes[1]);
 
-            if(choiceof4classes[0]==1)
+            if(choiceof4classes[0]==1)  ////since 2 classes on friday, preselected 3rd class on friday is being swapped by the day on which there'll be 4 classes
             {
                 routine[0][0][3]=9;
                 routine[0][4][2]=110;
@@ -224,7 +205,7 @@ int main()
                 printf("Swapped in thursday\n %d %d\n",routine[0][3][3],routine[0][4][2]);
             }
 
-            if(choiceof4classes[1]==1)
+            if(choiceof4classes[1]==1)  //choice for 2nd day with 4 classes
             {
                 routine[0][0][3]=10;
             }
@@ -258,7 +239,7 @@ int main()
             printf("1.Monday\n2.Tuesday\n3.Wednesday\n4.Thursday\n");
             scanf("%d %d",&choiceof4classes[0],&choiceof4classes[1]);
 
-            if(choiceof4classes[0]==1)
+            if(choiceof4classes[0]==1)  //choice for 1st day with 4 classes
             {
                 routine[0][0][3]=10;
             }
@@ -279,8 +260,7 @@ int main()
             }
 
 
-
-            if(choiceof4classes[1]==1)
+            if(choiceof4classes[1]==1)  //choice for 2nd day with 4 classes
             {
                 routine[0][0][3]=11;
                 routine[0][1][3]=110;
@@ -300,13 +280,14 @@ int main()
                 routine[0][1][3]=110;
             }
         }
+
         else if(classesonfriday==2)
         {
             printf("Since you chose to have 2 classes on Friday, on which 3 days would you have 4 classes?\n");
             printf("1.Monday\n2.Tuesday\n3.Wednesday\n4.Thursday\n");
             scanf("%d %d %d",&choiceof4classes[0],&choiceof4classes[1],&choiceof4classes[2]);
 
-            if(choiceof4classes[0]==1)
+            if(choiceof4classes[0]==1)  //since 2 classes on friday, preselected 3rd class on friday is being swapped by the day on which there'll be 4 classes
             {
                 routine[0][0][3]=9;
                 routine[0][4][2]=110;
@@ -332,8 +313,7 @@ int main()
             }
 
 
-
-            if(choiceof4classes[1]==1)
+            if(choiceof4classes[1]==1)  //choice for 2nd day with 4 classes
             {
                 routine[0][0][3]=10;
             }
@@ -353,7 +333,7 @@ int main()
                 routine[0][0][3]=110;
             }
 
-            if(choiceof4classes[2]==1)
+            if(choiceof4classes[2]==1)  ////choice for 3rd day with 4 classes
             {
                 routine[0][0][3]=11;
                 routine[0][1][3]=110;
@@ -387,7 +367,7 @@ int main()
             printf("1.Monday\n2.Tuesday\n3.Wednesday\n4.Thursday\n");
             scanf("%d %d %d",&choiceof4classes[0],&choiceof4classes[1],&choiceof4classes[2]);
 
-            if(choiceof4classes[0]==1)
+            if(choiceof4classes[0]==1)  //choice for 1st day with 4 classes
             {
                 routine[0][0][3]=10;
             }
@@ -407,7 +387,8 @@ int main()
                 routine[0][0][3]=110;
             }
 
-            if(choiceof4classes[1]==1)
+
+            if(choiceof4classes[1]==1)  ////choice for 2nd day with 4 classes
             {
                 routine[0][0][3]=11;
                 routine[0][1][3]=110;
@@ -428,9 +409,7 @@ int main()
             }
 
 
-
-
-            if(choiceof4classes[2]==1)
+            if(choiceof4classes[2]==1) //choice for 3rd day with 4 classes
             {
                 routine[0][0][3]=12;
                 routine[0][2][3]=110;
@@ -479,11 +458,12 @@ int main()
     int tuesswap12wed=0,tuesswap12thurs=0,tuesswap13wed=0,tuesswap13fri=0,tuesswap14thurs=0,tuesswap14fri=0;
 
 
-
     for(i=0; i<currenttotalteacher; i++)
     {
         printf("Teacher with ID %d teaches %s\n",i,subname[i]);
     }
+
+
 
     for(i=0; i<teachernum; i++)
     {
@@ -588,7 +568,6 @@ int main()
         }
     }
 
-
     if(itsmon==1 && itstues==0 && itswed==0 && itsthurs==0 && itsfri==0)
     {
         for(i=teacher; i<teachernum; i++)
@@ -629,6 +608,7 @@ int main()
             }
         }
     }
+
     if(itstues==1 && itsmon==0 && itswed==0 && itsthurs==0 && itsfri==0)
     {
         for(i=teacher; i<teachernum; i++)
@@ -668,6 +648,7 @@ int main()
             }
         }
     }
+
     if(itswed==1 && itsmon==0 && itstues==0 && itsthurs==0 && itsfri==0)
     {
         for(i=teacher; i<teachernum; i++)
@@ -708,6 +689,7 @@ int main()
             }
         }
     }
+
     if(itsthurs==1 && itsmon==0 && itstues==0 && itswed==0 && itsfri==0)
     {
         for(i=teacher; i<teachernum; i++)
@@ -749,6 +731,7 @@ int main()
             }
         }
     }
+
     if(itsfri==1 && itsmon==0 && itstues==0 && itswed==0 && itsthurs==0)
     {
         for(i=teacher; i<teachernum; i++)
@@ -787,9 +770,9 @@ int main()
                 itsthurs=1;
                 break;
             }
-
         }
     }
+
     if(itsmon==1 && itstues==1)
     {
         for(i=teacher; i<teachernum; i++)
@@ -824,6 +807,7 @@ int main()
             }
         }
     }
+
     if(itsmon==1 && itswed==1)
     {
         for(i=teacher; i<teachernum; i++)
@@ -859,6 +843,7 @@ int main()
             }
         }
     }
+
     if(itsmon==1 && itsthurs==1)
     {
         for(i=teacher; i<teachernum; i++)
@@ -894,6 +879,7 @@ int main()
             }
         }
     }
+
     if(itsmon==1 && itsfri==1)
     {
         for(i=teacher; i<teachernum; i++)
@@ -926,9 +912,9 @@ int main()
                 itsthurs=1;
                 break;
             }
-
         }
     }
+
     if(itstues==1 && itswed==1)
     {
         for(i=teacher; i<teachernum; i++)
@@ -965,6 +951,7 @@ int main()
             }
         }
     }
+
     if(itstues==1 && itsthurs==1)
     {
         for(i=teacher; i<teachernum; i++)
@@ -1001,6 +988,7 @@ int main()
             }
         }
     }
+
     if(itstues==1 && itsfri==1)
     {
         for(i=teacher; i<teachernum; i++)
@@ -1034,9 +1022,9 @@ int main()
                 itsthurs=1;
                 break;
             }
-
         }
     }
+
     if(itswed==1 && itsthurs==1)
     {
         for(i=teacher; i<teachernum; i++)
@@ -1072,6 +1060,7 @@ int main()
             }
         }
     }
+
     if(itswed==1 && itsfri==1)
     {
         for(i=teacher; i<teachernum; i++)
@@ -1105,9 +1094,9 @@ int main()
                 itsthurs=1;
                 break;
             }
-
         }
     }
+
     if(itsthurs==1 && itsfri==1)
     {
         for(i=teacher; i<teachernum; i++)
@@ -1140,9 +1129,11 @@ int main()
                 itswed=1;
                 break;
             }
-
         }
     }
+
+
+
     for(i=0; i<teachernum; i++)
     {
         printf("Teacher %d chose ",i);
@@ -1152,6 +1143,7 @@ int main()
         }
         printf("\n");
     }
+
     for(i=0; i<teachernum; i++)
     {
         for(j=0; j<2; j++)
@@ -1181,9 +1173,9 @@ int main()
                 dontfri[fk]=i;
                 fk++;
             }
-
         }
     }
+
     printf("Monday is not preferred by ");
     for(i=0; i<mk; i++)
     {
@@ -1219,19 +1211,14 @@ int main()
     }
     printf("\n");
 
-
-
     for(i=0; i<mk; i++)
     {
         if(routine[0][0][0]==dontmon[i])
         {
-            //printf("routine[0][0][0] needs to be changed\n");
             if(2!=dontmon[0] && 2!=dontmon[1] && 2!=dontmon[2])
             {
-                //printf("2 can be at 0 0 0\n");
                 if(routine[0][0][0]!=dontwed[0] && routine[0][0][0]!=dontwed[1] && routine[0][0][0]!=dontwed[2])
                 {
-                    //printf("0 can be at 0 2 0\n");
                     //printf("monswap02wed=1\n");
                     monswap02wed=1;
                     int tempmonswap02wed=routine[0][0][0];
@@ -1240,7 +1227,6 @@ int main()
                 }
                 else if(routine[0][0][0]!=dontthurs[0] && routine[0][0][0]!=dontthurs[1] && routine[0][0][0]!=dontthurs[2])
                 {
-                    //printf("0 can be at 0 3 0\n");
                     //printf("monswap02thurs=1\n");
                     monswap02thurs=1;
                     int tempmonswap02thurs=routine[0][0][0];
@@ -1250,12 +1236,8 @@ int main()
             }
             else if(routine[0][4][0]!=dontmon[0] && routine[0][4][0]!=dontmon[1] && routine[0][4][0]!=dontmon[2])
             {
-                //printf("3 can be at 0 0 0\n");
-                //printf("%d %d %d\n",dontwed[0],dontwed[1],dontwed[2]);
-                //printf("%d %d %d\n",dontfri[0],dontfri[1],dontfri[2]);
                 if(routine[0][0][0]!=dontwed[0] && routine[0][0][0]!=dontwed[1] && routine[0][0][0]!=dontwed[2])
                 {
-                    //printf("0 can be at 0 2 1\n");
                     //printf("monswap03wed=1\n");
                     monswap03wed=1;
                     int tempmonswap03wed=routine[0][0][0];
@@ -1264,7 +1246,6 @@ int main()
                 }
                 else if(routine[0][0][0]!=dontfri[0] && routine[0][0][0]!=dontfri[1] && routine[0][0][0]!=dontfri[2])
                 {
-                    //printf("0 can be at 0 4 0\n");
                     //printf("monswap03fri=1\n");
                     monswap03fri=1;
                     int tempmonswap03fri=routine[0][0][0];
@@ -1292,6 +1273,7 @@ int main()
                 }
             }
         }
+
         if(routine[0][0][1]==dontmon[i])
         {
             if(routine[0][2][0]!=dontmon[0] && routine[0][2][0]!=dontmon[1] && routine[0][2][0]!=dontmon[2])
@@ -1316,6 +1298,7 @@ int main()
                     }
                 }
             }
+
             else if(routine[0][2][1]!=dontmon[0] && routine[0][2][1]!=dontmon[1] && routine[0][2][1]!=dontmon[2])
             {
                 if(routine[0][0][0]!=routine[0][2][1])
@@ -1338,6 +1321,7 @@ int main()
                     }
                 }
             }
+
             else
             {
                 //printf("1 can be swapped by 4\n");
@@ -1419,6 +1403,7 @@ int main()
                 routine[0][4][1]=temptuesswap04fri;
             }
         }
+
         if(routine[0][1][1]==donttues[i])
         {
             if(monswap12wed==0 && routine[0][2][0]!=donttues[0] && routine[0][2][0]!=donttues[1] && routine[0][2][0]!=donttues[2] &&routine[0][1][0]!=routine[0][2][0] && routine[0][1][1]!=dontwed[0] && routine[0][1][1]!=dontwed[1] && routine[0][1][1]!=dontwed[2] && routine[0][2][0]!=routine[0][1][1] && routine[0][2][0]!=routine[0][1][0])
@@ -1481,33 +1466,26 @@ int main()
         {
             if(routine[0][2][0]==dontwed[i])
             {
-                //printf("2 in wed needs to change\n");
                 if(routine[0][0][0]!=dontwed[0] && routine[0][0][0]!=dontwed[1] && routine[0][0][0]!=dontwed[2] &&routine[0][2][0]!=dontmon[0] && routine[0][2][0]!=dontmon[1] && routine[0][2][0]!=dontmon[2] && routine[0][0][0]!=routine[0][2][1] && routine[0][0][0]!=routine[0][2][0] && routine[0][2][0]!=routine[0][0][1])
                 {
-
                     wedswap20mon=1;
                     int tempwedswap20mon=routine[0][2][0];
                     routine[0][2][0]=routine[0][0][0];
                     routine[0][0][0]=tempwedswap20mon;
-
                 }
                 else if(routine[0][1][0]!=dontwed[0] && routine[0][1][0]!=dontwed[1] && routine[0][1][0]!=dontwed[2] && routine[0][2][0]!=donttues[0] && routine[0][2][0]!=donttues[1] && routine[0][2][0]!=donttues[2] && routine[0][1][0]!=routine[0][2][1] && routine[0][1][0]!=routine[0][2][0] && routine[0][2][0]!=routine[0][1][1])
                 {
-
                     wedswap20tues=1;
                     int tempwedswap20tues=routine[0][2][0];
                     routine[0][2][0]=routine[0][1][0];
                     routine[0][1][0]=tempwedswap20tues;
-
                 }
                 else if(routine[0][0][1]!=dontwed[0] && routine[0][0][1]!=dontwed[1] && routine[0][0][1]!=dontwed[2] && routine[0][2][0]!=dontmon[0] && routine[0][2][0]!=dontmon[1] && routine[0][2][0]!=dontmon[2] && routine[0][0][1]!=routine[0][2][1] && routine[0][0][1]!=routine[0][2][0] && routine[0][2][0]!=routine[0][0][0])
                 {
-
                     wedswap21mon=1;
                     int tempwedswap21mon=routine[0][2][0];
                     routine[0][2][0]=routine[0][0][1];
                     routine[0][0][1]=tempwedswap21mon;
-
                 }
                 else if(routine[0][1][1]!=dontwed[0] && routine[0][1][1]!=dontwed[1] && routine[0][1][1]!=dontwed[2] && routine[0][2][0]!=donttues[0] && routine[0][2][0]!=donttues[1] && routine[0][2][0]!=donttues[2] && routine[0][1][1]!=routine[0][2][1] && routine[0][1][1]!=routine[0][2][0] && routine[0][2][0]!=routine[0][1][0])
                 {
@@ -1515,49 +1493,41 @@ int main()
                     int tempwedswap21tues=routine[0][2][0];
                     routine[0][2][0]=routine[0][1][1];
                     routine[0][1][1]=tempwedswap21tues;
-
                 }
                 else if(routine[0][3][1]!=dontwed[0] && routine[0][3][1]!=dontwed[1] && routine[0][3][1]!=dontwed[2] && routine[0][2][0]!=dontthurs[0] && routine[0][2][0]!=dontthurs[1] && routine[0][2][0]!=dontthurs[2] && routine[0][3][0]!=routine[0][2][0] && routine[0][3][1]!=routine[0][2][1] && routine[0][3][1]!=routine[0][2][0])
                 {
-
                     wedswap24thurs=1;
                     int tempwedswap24thurs=routine[0][2][0];
                     routine[0][2][0]=routine[0][3][1];
                     routine[0][3][1]=tempwedswap24thurs;
-
                 }
                 else if(routine[0][4][1]!=dontwed[0] && routine[0][4][1]!=dontwed[1] && routine[0][4][1]!=dontwed[2] && routine[0][2][0]!=dontfri[0] && routine[0][2][0]!=dontfri[1] && routine[0][2][0]!=dontfri[2] && routine[0][4][0]!=routine[0][2][0] && routine[0][4][1]!=routine[0][2][0] && routine[0][2][1]!=routine[0][4][1])
                 {
-
                     wedswap24fri=1;
                     int tempwedswap24fri=routine[0][2][0];
                     routine[0][2][0]=routine[0][4][1];
                     routine[0][4][1]=tempwedswap24fri;
-
                 }
                 else if(routine[0][2][1]!=routine[0][4][0] && routine[0][4][0]!=dontwed[0] && routine[0][4][0]!=dontwed[1] && routine[0][4][0]!=dontwed[2] && routine[0][2][0]!=dontfri[0] && routine[0][2][0]!=dontfri[1] && routine[0][2][0]!=dontfri[2] && routine[0][4][1]!=routine[0][2][0] && routine[0][4][0]!=routine[0][2][0])
                 {
-
                     wedswap23fri=1;
                     int tempwedswap23fri=routine[0][2][0];
                     routine[0][2][0]=routine[0][4][0];
                     routine[0][4][0]=tempwedswap23fri;
                 }
-
             }
         }
+
         if(monswap03wed==0 && tuesswap03wed==0 && monswap13wed==0 && tuesswap13wed==0)
         {
             if(routine[0][2][1]==dontwed[i])
             {
                 if(routine[0][0][0]!=dontwed[0] && routine[0][0][0]!=dontwed[1] && routine[0][0][0]!=dontwed[2] && routine[0][2][0]!=routine[0][0][0] && routine[0][2][1]!=dontmon[0] && routine[0][2][1]!=dontmon[1] && routine[0][2][1]!=dontmon[2] && routine[0][0][0]!=routine[0][2][1] && routine[0][0][1]!=routine[0][2][1])
                 {
-
                     wedswap30mon=1;
                     int tempwedswap30mon=routine[0][2][1];
                     routine[0][2][1]=routine[0][0][0];
                     routine[0][0][0]=tempwedswap30mon;
-
                 }
                 else if(routine[0][2][0]!=routine[0][1][0] && routine[0][1][0]!=dontwed[0] && routine[0][1][0]!=dontwed[1] && routine[0][1][0]!=dontwed[2] && routine[0][2][1]!=donttues[0] && routine[0][2][1]!=donttues[1] && routine[0][2][1]!=donttues[2] && routine[0][1][1]!=routine[0][2][1] && routine[0][1][0]!=routine[0][2][1])
                 {
@@ -1568,7 +1538,6 @@ int main()
                 }
                 else if(routine[0][2][0]!=routine[0][0][1] && routine[0][0][1]!=dontwed[0] && routine[0][0][1]!=dontwed[1] && routine[0][0][1]!=dontwed[2] && routine[0][2][1]!=dontmon[0] && routine[0][2][1]!=dontmon[1] && routine[0][2][1]!=dontmon[2] && routine[0][0][1]!=routine[0][2][1] && routine[0][0][0]!=routine[0][2][1])
                 {
-
                     wedswap31mon=1;
                     int tempwedswap31mon=routine[0][2][1];
                     routine[0][2][1]=routine[0][0][1];
@@ -1591,7 +1560,6 @@ int main()
 
                 else if(routine[0][2][0]!=routine[0][4][1] && routine[0][4][1]!=dontwed[0] && routine[0][4][1]!=dontwed[1] && routine[0][4][1]!=dontwed[2] && routine[0][2][1]!=dontfri[0] && routine[0][2][1]!=dontfri[1] && routine[0][2][1]!=dontfri[2] && routine[0][4][0]!=routine[0][2][1] && routine[0][4][1]!=routine[0][2][1])
                 {
-
                     wedswap34fri=1;
                     int tempwedswap34fri=routine[0][2][1];
                     routine[0][2][1]=routine[0][4][1];
@@ -1607,6 +1575,7 @@ int main()
             }
         }
     }
+
     int thursswap20mon=0,thursswap20tues=0,thursswap21mon=0,thursswap21tues=0,thursswap23fri=0,thursswap23tues=0,thursswap24fri=0;
     int thursswap40mon=0,thursswap40tues=0,thursswap41mon=0,thursswap41tues=0,thursswap43wed=0,thursswap43fri=0,thursswap42wed=0;
     int friswap30mon=0,friswap30tues=0,friswap31mon=0,friswap31tues=0,friswap32wed=0,friswap32thurs=0,friswap34thurs=0;
@@ -1618,7 +1587,6 @@ int main()
         {
             if(routine[0][3][0]==dontthurs[i])
             {
-                //printf("2 in thurs needs to change\n");
                 if(routine[0][0][0]!=dontthurs[0] && routine[0][0][0]!=dontthurs[1] && routine[0][0][0]!=dontthurs[2] && routine[0][3][0]!=dontmon[0] && routine[0][3][0]!=dontmon[1] && routine[0][3][0]!=dontmon[2] && wedswap20mon==0 && routine[0][0][1]!=routine[0][3][0] && routine[0][0][0]!=routine[0][3][0])
                 {
                     thursswap20mon=1;
@@ -1629,7 +1597,6 @@ int main()
                 }
                 else if(routine[0][1][0]!=dontthurs[0] && routine[0][1][0]!=dontthurs[1] && routine[0][1][0]!=dontthurs[2] && routine[0][3][0]!=donttues[0] && routine[0][3][0]!=donttues[1] && routine[0][3][0]!=donttues[2] && wedswap20tues==0 && routine[0][1][1]!=routine[0][3][0] && routine[0][1][0]!=routine[0][3][0])
                 {
-
                     thursswap20tues=1;
                     int tempthursswap20tues=routine[0][3][0];
                     routine[0][3][0]=routine[0][1][0];
@@ -1638,7 +1605,6 @@ int main()
 
                 else if(routine[0][0][1]!=dontthurs[0] && routine[0][0][1]!=dontthurs[1] && routine[0][0][1]!=dontthurs[2] && routine[0][3][0]!=dontmon[0] && routine[0][3][0]!=dontmon[1] && routine[0][3][0]!=dontmon[2] && wedswap21mon==0 && routine[0][0][0]!=routine[0][3][0] && routine[0][0][1]!=routine[0][3][0])
                 {
-
                     thursswap21mon=1;
                     int tempthursswap21mon=routine[0][3][0];
                     routine[0][3][0]=routine[0][0][1];
@@ -1655,25 +1621,20 @@ int main()
 
                 else if(routine[0][2][1]!=dontthurs[0] && routine[0][2][1]!=dontthurs[1] && routine[0][2][1]!=dontthurs[2] && routine[0][3][0]!=donttues[0] && routine[0][3][0]!=donttues[1] && routine[0][3][0]!=donttues[2] && routine[0][2][0]!=routine[0][3][0] && routine[0][2][1]!=routine[0][3][0] && routine[0][3][1]!=routine[0][2][1])
                 {
-
                     thursswap23tues=1;
                     int tempthursswap23tues=routine[0][3][0];
                     routine[0][3][0]=routine[0][2][1];
                     routine[0][2][1]=tempthursswap23tues;
-
                 }
                 else if(routine[0][4][0]!=dontthurs[0] && routine[0][4][0]!=dontthurs[1] && routine[0][4][0]!=dontthurs[2] && routine[0][3][0]!=dontfri[0] && routine[0][3][0]!=dontfri[1] && routine[0][3][0]!=dontfri[2] && routine[0][4][1]!=routine[0][3][0] && routine[0][4][0]!=routine[0][3][0] && routine[0][4][0]!=routine[0][3][1])
                 {
-
                     thursswap23fri=1;
                     int tempthursswap23fri=routine[0][3][0];
                     routine[0][3][0]=routine[0][4][0];
                     routine[0][4][0]=tempthursswap23fri;
-
                 }
                 else if(routine[0][3][1]!=routine[0][4][1] && routine[0][4][1]!=dontthurs[0] && routine[0][4][1]!=dontthurs[1] && routine[0][4][1]!=dontthurs[2] && routine[0][3][0]!=dontfri[0] && routine[0][3][0]!=dontfri[1] && routine[0][3][0]!=dontfri[2] && wedswap24fri==0 && routine[0][4][0]!=routine[0][3][0] && routine[0][4][1]!=routine[0][3][0])
                 {
-
                     thursswap24fri=1;
                     int tempthursswap24fri=routine[0][3][0];
                     routine[0][3][0]=routine[0][4][1];
@@ -1681,29 +1642,25 @@ int main()
                 }
             }
         }
+
         if(monswap04thurs==0 && tuesswap04thurs==0 && monswap14thurs==0 && tuesswap14thurs==0)
         {
             if(routine[0][3][1]==dontthurs[i])
             {
                 if(routine[0][0][0]!=dontthurs[0] && routine[0][0][0]!=dontthurs[1] && routine[0][0][0]!=dontthurs[2] && routine[0][3][0]!=routine[0][0][0] && routine[0][3][1]!=dontmon[0] && routine[0][3][1]!=dontmon[1] && routine[0][3][1]!=dontmon[2] && routine[0][0][0]!=routine[0][3][1] && routine[0][0][1]!=routine[0][3][1])
                 {
-
                     thursswap40mon=1;
                     int tempthursswap40mon=routine[0][3][1];
                     routine[0][3][1]=routine[0][0][0];
                     routine[0][0][0]=tempthursswap40mon;
                 }
-
-
                 else if(routine[0][3][0]!=routine[0][1][0] && routine[0][1][0]!=dontthurs[0] && routine[0][1][0]!=dontthurs[1] && routine[0][1][0]!=dontthurs[2] && routine[0][3][1]!=donttues[0] && routine[0][3][1]!=donttues[1] && routine[0][3][1]!=donttues[2] && routine[0][1][1]!=routine[0][3][1] && routine[0][1][0]!=routine[0][3][1])
                 {
-
                     thursswap40tues=1;
                     int tempthursswap40tues=routine[0][3][1];
                     routine[0][3][1]=routine[0][1][0];
                     routine[0][1][0]=tempthursswap40tues;
                 }
-
                 else if(routine[0][3][0]!=routine[0][0][1] && routine[0][0][1]!=dontthurs[0] && routine[0][0][1]!=dontthurs[1] && routine[0][0][1]!=dontthurs[2] && routine[0][3][1]!=dontmon[0] && routine[0][3][1]!=dontmon[1] && routine[0][3][1]!=dontmon[2] && routine[0][0][1]!=routine[0][3][1] && routine[0][0][0]!=routine[0][3][1])
                 {
                     thursswap41mon=1;
@@ -1711,42 +1668,33 @@ int main()
                     routine[0][3][1]=routine[0][0][1];
                     routine[0][0][1]=tempthursswap41mon;
                 }
-
                 else if(routine[0][3][0]!=routine[0][1][1] && routine[0][1][1]!=dontthurs[0] && routine[0][1][1]!=dontthurs[1] && routine[0][1][1]!=dontthurs[2] && routine[0][3][1]!=donttues[0] && routine[0][3][1]!=donttues[1] && routine[0][3][1]!=donttues[2] && routine[0][1][1]!=routine[0][3][1] && routine[0][1][0]!=routine[0][3][1])
                 {
-
                     thursswap41tues=1;
                     int tempthursswap41tues=routine[0][3][1];
                     routine[0][3][1]=routine[0][1][1];
                     routine[0][1][1]=tempthursswap41tues;
                 }
-
                 else if(routine[0][3][0]!=routine[0][2][1] && routine[0][2][1]!=dontthurs[0] && routine[0][2][1]!=dontthurs[1] && routine[0][2][1]!=dontthurs[2] && routine[0][3][1]!=dontwed[0] && routine[0][3][1]!=dontwed[1] && routine[0][3][1]!=dontwed[2] && routine[0][2][1]!=routine[0][3][1] && routine[0][2][0]!=routine[0][3][1])
                 {
-
                     thursswap43wed=1;
                     int tempthursswap43wed=routine[0][3][1];
                     routine[0][3][1]=routine[0][2][1];
                     routine[0][2][1]=tempthursswap43wed;
                 }
-
                 else if(routine[0][3][0]!=routine[0][4][0] && routine[0][4][0]!=dontthurs[0] && routine[0][4][0]!=dontthurs[1] && routine[0][4][0]!=dontthurs[2] && routine[0][3][1]!=dontfri[0] && routine[0][3][1]!=dontfri[1] && routine[0][3][1]!=dontfri[2] && routine[0][3][1]!=routine[0][4][1] && routine[0][4][0]!=routine[0][3][1])
                 {
-
                     thursswap43fri=1;
                     int tempthursswap43fri=routine[0][3][1];
                     routine[0][3][1]=routine[0][4][0];
                     routine[0][4][0]=tempthursswap43fri;
                 }
-
                 else if(routine[0][3][0]!=routine[0][2][0] && routine[0][2][0]!=dontthurs[0] && routine[0][2][0]!=dontthurs[1] && routine[0][2][0]!=dontthurs[2] && routine[0][3][1]!=dontwed[0] && routine[0][3][1]!=dontwed[1] && routine[0][3][1]!=dontwed[2] && routine[0][2][0]!=routine[0][3][1] && routine[0][2][1]!=routine[0][3][1])
                 {
                     thursswap42wed=1;
                     int tempthursswap42wed=routine[0][3][1];
                     routine[0][3][1]=routine[0][2][0];
                     routine[0][2][0]=tempthursswap42wed;
-
-
                 }
             }
         }
@@ -1758,7 +1706,6 @@ int main()
         {
             if(routine[0][4][0]==dontfri[i])
             {
-                //printf("3 in fri needs to change\n");
                 if(routine[0][0][0]!=dontfri[0] && routine[0][0][0]!=dontfri[1] && routine[0][0][0]!=dontfri[2] && routine[0][4][0]!=dontmon[0] && routine[0][4][0]!=dontmon[1] && routine[0][4][0]!=dontmon[2] && wedswap30mon==0 && routine[0][4][0]!=routine[0][0][1] && routine[0][4][0]!=routine[0][0][0] && routine[0][4][1]!=routine[0][0][0])
                 {
                     friswap30mon=1;
@@ -1766,62 +1713,44 @@ int main()
                     routine[0][4][0]=routine[0][0][0];
                     routine[0][0][0]=tempfriswap30mon;
                 }
-
                 else if(routine[0][1][0]!=dontfri[0] && routine[0][1][0]!=dontfri[1] && routine[0][1][0]!=dontfri[2] && routine[0][4][0]!=donttues[0] && routine[0][4][0]!=donttues[1] && routine[0][4][0]!=donttues[2] && wedswap30tues==0 && routine[0][4][0]!=routine[0][1][1] && routine[0][4][0]!=routine[0][1][0] && routine[0][4][1]!=routine[0][1][0])
-
                 {
                     friswap30tues=1;
                     int tempfriswap30tues=routine[0][4][0];
                     routine[0][4][0]=routine[0][1][0];
                     routine[0][1][0]=tempfriswap30tues;
-
                 }
                 else if(routine[0][0][1]!=dontfri[0] && routine[0][0][1]!=dontfri[1] && routine[0][0][1]!=dontfri[2] && routine[0][4][0]!=dontmon[0] && routine[0][4][0]!=dontmon[1] && routine[0][4][0]!=dontmon[2] && wedswap31mon==0 && routine[0][4][0]!=routine[0][0][1] && routine[0][4][0]!=routine[0][0][0] && routine[0][0][1]!=routine[0][4][1])
-
                 {
-
                     friswap31mon=1;
                     int tempfriswap31mon=routine[0][4][0];
                     routine[0][4][0]=routine[0][0][1];
                     routine[0][0][1]=tempfriswap31mon;
                 }
-
                 else if(routine[0][1][1]!=dontfri[0] && routine[0][1][1]!=dontfri[1] && routine[0][1][1]!=dontfri[2] && routine[0][4][0]!=donttues[0] && routine[0][4][0]!=donttues[1] && routine[0][4][0]!=donttues[2] && wedswap31tues==0 && routine[0][4][0]!=routine[0][1][1] && routine[0][4][0]!=routine[0][1][0] && routine[0][4][1]!=routine[0][1][1])
-
-                {
-
+{
                     friswap31tues=1;
                     int tempfriswap31tues=routine[0][4][0];
                     routine[0][4][0]=routine[0][1][1];
                     routine[0][1][1]=tempfriswap31tues;
                 }
-
                 else if(routine[0][2][0]!=dontfri[0] && routine[0][2][0]!=dontfri[1] && routine[0][2][0]!=dontfri[2] && routine[0][4][0]!=dontwed[0] && routine[0][4][0]!=dontwed[1] && routine[0][4][0]!=dontwed[2] && routine[0][4][0]!=routine[0][2][1] && routine[0][4][0]!=routine[0][2][0] && routine[0][2][0]!=routine[0][4][1])
-
-                {
-
+{
                     friswap32wed=1;
                     int tempfriswap32wed=routine[0][4][0];
                     routine[0][4][0]=routine[0][2][0];
                     routine[0][2][0]=tempfriswap32wed;
                 }
 
-
-
                 else if(routine[0][3][0]!=dontfri[0] && routine[0][3][0]!=dontfri[1] && routine[0][3][0]!=dontfri[2] && routine[0][4][0]!=dontthurs[0] && routine[0][4][0]!=dontthurs[1] && routine[0][4][0]!=dontthurs[2] && wedswap32thurs==0 && routine[0][4][0]!=routine[0][3][1] && routine[0][4][0]!=routine[0][3][0] && routine[0][3][0]!=routine[0][4][1])
-
-                {
-
+{
                     friswap32thurs=1;
                     int tempfriswap32thurs=routine[0][4][0];
                     routine[0][4][0]=routine[0][3][0];
                     routine[0][3][0]=tempfriswap32thurs;
                 }
-
                 else if(routine[0][3][1]!=routine[0][4][1] && routine[0][3][1]!=dontfri[0] && routine[0][3][1]!=dontfri[1] && routine[0][3][1]!=dontfri[2] && routine[0][4][0]!=dontthurs[0] && routine[0][4][0]!=dontthurs[1] && routine[0][4][0]!=dontthurs[2] && wedswap34thurs==0 && routine[0][4][0]!=routine[0][3][1] && routine[0][4][0]!=routine[0][3][0])
-
-                {
-
+{
                     friswap34thurs=1;
                     int tempfriswap34thurs=routine[0][4][0];
                     routine[0][4][0]=routine[0][3][1];
@@ -1900,7 +1829,9 @@ int main()
         }
     }
 
-    for(i=0; i<5; i++)
+
+
+    for(i=0; i<5; i++)                       //if rooms are to be included this is where the code starts to change
     {
         for(j=0; j<4; j++)
         {
@@ -1943,6 +1874,8 @@ int main()
             }
         }
     }
+
+
 
     for(k=0; k<2; k++)
     {
@@ -1993,7 +1926,7 @@ int main()
         }
         fprintf(fpprint,"\n\n\n");
     }
-    fclose (fpprint);
+    fclose (fpprint);                               //file work truly ends
 
 
     for(k=0; k<2; k++)
@@ -2012,7 +1945,7 @@ int main()
                         if(routine[k][i][j]==m && subname[m]!=NULL)
                         {
                             //printf("\tk=%d i=%d j=%d plc=%d m=%d %s",k,i,j,routine[k][i][j],m,subname[m]);
-                            if(k==1 && j==3 && strcmp(subname[m],"A")==0) continue;
+                            if(k==1 && j==3 && strcmp(subname[m],subname[0])==0) continue;
                             else printf("\t%s",subname[m]);
                         }
                     }
@@ -2055,15 +1988,6 @@ int main()
 
 
 /*
-
-CSE 4203
-CSE 4205
-Phy 4241
-Math 4241
-Chem 4241
-CSE 4202/CSE 4206
-Phy 4242/Chem 4242
-Hum 4241/Hum 4242
 
 CSE 4203
 CSE 4205
